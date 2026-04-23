@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" role="img" aria-labelledby="title desc">
+  <title id="title">Focus Bloom preview</title>
+  <desc id="desc">A warm illustrated dashboard with a blooming goal garden.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff6e6"/>
+      <stop offset="100%" stop-color="#f2efe6"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffdf8"/>
+      <stop offset="100%" stop-color="#f9f5ea"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <circle cx="785" cy="88" r="118" fill="#ffe4bd" opacity="0.8"/>
+  <rect x="52" y="44" width="856" height="72" rx="22" fill="#fffdf8" stroke="#ddcfbf"/>
+  <text x="92" y="89" font-family="Georgia, serif" font-size="32" fill="#2f5d3a">🌱 Focus Bloom</text>
+  <rect x="92" y="164" width="776" height="132" rx="28" fill="url(#card)" stroke="#ddcfbf"/>
+  <text x="126" y="214" font-family="Georgia, serif" font-size="34" fill="#2a2018">Your living goal garden</text>
+  <text x="126" y="250" font-family="Arial, sans-serif" font-size="18" fill="#6b5a48">Plant tasks, habits, and milestones. Watch them grow through every stage.</text>
+  <g transform="translate(112 332)">
+    <rect width="220" height="160" rx="26" fill="#fffdf8" stroke="#ddcfbf"/>
+    <ellipse cx="110" cy="128" rx="58" ry="16" fill="#d8cfb8" opacity="0.65"/>
+    <path d="M110 122 C108 98 108 74 110 52" fill="none" stroke="#2f5d3a" stroke-width="8" stroke-linecap="round"/>
+    <path d="M108 86c-34 0-46 18-48 40 24-2 39-14 48-40z" fill="#4a8c5a"/>
+    <path d="M112 86c34 0 46 18 48 40-24-2-39-14-48-40z" fill="#2f5d3a"/>
+    <ellipse cx="110" cy="42" rx="22" ry="28" fill="#f0c878"/>
+    <ellipse cx="87" cy="56" rx="18" ry="24" fill="#f4b8d0" transform="rotate(-30 87 56)"/>
+    <ellipse cx="133" cy="56" rx="18" ry="24" fill="#a8c8f0" transform="rotate(30 133 56)"/>
+  </g>
+  <g transform="translate(370 332)">
+    <rect width="220" height="160" rx="26" fill="#fffdf8" stroke="#ddcfbf"/>
+    <ellipse cx="110" cy="128" rx="58" ry="16" fill="#d8cfb8" opacity="0.65"/>
+    <path d="M110 122 C108 106 109 92 110 74" fill="none" stroke="#2f5d3a" stroke-width="8" stroke-linecap="round"/>
+    <path d="M108 94c-24 0-34 14-36 30 18-2 29-10 36-30z" fill="#7eb085"/>
+    <path d="M112 94c24 0 34 14 36 30-18-2-29-10-36-30z" fill="#4a8c5a"/>
+    <ellipse cx="110" cy="68" rx="18" ry="22" fill="#4a8c5a"/>
+  </g>
+  <g transform="translate(628 332)">
+    <rect width="220" height="160" rx="26" fill="#fffdf8" stroke="#ddcfbf"/>
+    <ellipse cx="110" cy="128" rx="58" ry="16" fill="#d8cfb8" opacity="0.65"/>
+    <ellipse cx="110" cy="100" rx="20" ry="14" fill="#6b513a"/>
+  </g>
+</svg>

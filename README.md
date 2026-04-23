@@ -16,7 +16,7 @@ Because everything lives in your browser's localStorage, your garden is private,
 
 ## Features
 
-- **Garden view** — every goal is a hand-drawn SVG plant that visually reflects its current life stage
+- **Garden view** — every goal is a hand-drawn SVG plant card that visually reflects its current life stage
 - **Five growth stages** — seed → sprout → bud → bloom → harvest, each with its own art
 - **Three plant kinds** — habits, tasks, and milestones, each with distinctive silhouettes
 - **Categories** — health, learning, creative, work, relationships, mindfulness — color-coded
@@ -25,7 +25,8 @@ Because everything lives in your browser's localStorage, your garden is private,
 - **Filters & stats** — see what's blooming, what needs water, and how your week is going
 - **Sample garden** — a thoughtful starter garden so the app feels alive on first run
 - **Import / export / backup** — your data is JSON, and you own it
-- **Keyboard shortcuts** — designed to feel fast under your fingers
+- **Keyboard shortcuts** — designed to feel fast under your fingers, with a built-in help overlay
+- **Quick actions** — replant the sample garden, clear the current browser garden, or plant a new goal instantly
 - **Local-first** — no accounts, no servers, no tracking, no network calls
 
 ## Quick start
@@ -101,6 +102,7 @@ focus-bloom/
     ui.js           # rendering, dialogs, list view
     garden.js       # SVG plant rendering, garden view
     seeds.js        # sample garden data
+    io.js           # import/export helpers
     shortcuts.js    # keyboard handling
     main.js         # bootstrap
   docs/
@@ -109,7 +111,7 @@ focus-bloom/
 
 ## Privacy
 
-Focus Bloom never makes a network request. Open your devtools and watch — there is nothing to watch. Your garden lives in `localStorage` and only travels when you choose to export it.
+Focus Bloom never makes a network request. Open your devtools and watch, there is nothing to watch. Your garden lives in `localStorage` and only travels when you choose to export it.
 
 ## License
 

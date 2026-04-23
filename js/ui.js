@@ -188,6 +188,13 @@ export function renderToolbar(state) {
   const stats = selectStats(state);
   const cats = ["all", ...CATEGORIES];
   const kinds = ["all", ...KINDS];
+  const filtersActive = Boolean(
+    state.ui.search ||
+      state.ui.categoryFilter !== "all" ||
+      state.ui.kindFilter !== "all" ||
+      state.ui.onlyActive ||
+      state.ui.sortBy !== "recent"
+  );
 
   return el("div", { class: "toolbar" }, [
     el("h2", {}, state.ui.view === "garden" ? "Your garden" : "All goals"),
@@ -240,6 +247,40 @@ export function renderToolbar(state) {
       }),
       "Hide harvested",
     ]),
+    el("label", { class: "toolbar-control" }, [
+      el("span", { class: "toolbar-label" }, "Sort"),
+      el(
+        "select",
+        {
+          class: "toolbar-select",
+          "aria-label": "Sort goals",
+          value: state.ui.sortBy,
+          onChange: (event) => actions.setUI({ sortBy: event.target.value }),
+        },
+        [
+          el("option", { value: "recent", selected: state.ui.sortBy === "recent" }, "Recent"),
+          el("option", { value: "title", selected: state.ui.sortBy === "title" }, "Title"),
+          el("option", { value: "stage", selected: state.ui.sortBy === "stage" }, "Stage"),
+        ]
+      ),
+    ]),
+    filtersActive
+      ? el(
+          "button",
+          {
+            type: "button",
+            class: "btn btn-ghost",
+            onClick: () => actions.setUI({
+              search: "",
+              categoryFilter: "all",
+              kindFilter: "all",
+              onlyActive: false,
+              sortBy: "recent",
+            }),
+          },
+          "Clear filters"
+        )
+      : null,
     el("span", { class: "spacer", style: "flex:1" }),
     el("span", { class: "chip", title: "Total goals in your garden" }, `${stats.total} planted`),
     el("span", { class: "chip", title: "Currently in bloom" }, `${stats.byStage.bloom} blooming`),

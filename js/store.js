@@ -139,7 +139,6 @@ export const actions = {
     setState((s) => ({ ...s, ui: { ...s.ui, ...patch } }));
   },
   replaceAll(payload) {
-    // Used by import. Validate minimally before swapping.
     if (!payload || !Array.isArray(payload.goals)) {
       throw new Error("Invalid garden file: expected { goals: [...] }.");
     }
@@ -147,7 +146,19 @@ export const actions = {
     setState((s) => ({
       ...s,
       goals,
-      meta: { ...s.meta, createdAt: payload?.meta?.createdAt ?? s.meta.createdAt },
+      ui: {
+        ...s.ui,
+        view: "garden",
+        search: "",
+        categoryFilter: "all",
+        kindFilter: "all",
+        onlyActive: false,
+      },
+      meta: {
+        ...s.meta,
+        ...(payload.meta ?? {}),
+        createdAt: payload?.meta?.createdAt ?? s.meta.createdAt,
+      },
     }));
   },
   clearAll() {
