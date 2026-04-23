@@ -4,9 +4,11 @@ import { init, getState, subscribe } from "./store.js";
 import { renderTopbar, renderListView } from "./ui.js";
 import { renderGardenView } from "./garden.js";
 import { seedGarden } from "./seeds.js";
+import { mountShortcuts } from "./shortcuts.js";
 
 function bootstrap() {
   init({ seed: seedGarden });
+  mountShortcuts();
   const app = document.getElementById("app");
   if (!app) return;
 

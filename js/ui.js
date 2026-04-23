@@ -143,6 +143,19 @@ export function renderTopbar(container) {
       el(
         "button",
         {
+          class: "btn",
+          type: "button",
+          id: "help-btn",
+          onClick: async () => {
+            const { showShortcutHelp } = await import("./shortcuts.js");
+            showShortcutHelp();
+          },
+        },
+        [el("span", { "aria-hidden": "true" }, "⌘"), el("span", {}, "Shortcuts")]
+      ),
+      el(
+        "button",
+        {
           class: "btn btn-primary",
           type: "button",
           id: "new-goal-btn",
