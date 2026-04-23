@@ -1,9 +1,11 @@
-/* Focus Bloom — list view, rows, and modal dialog */
+/* Focus Bloom — list view, rows, and goal dialog */
 
 .rows {
   list-style: none;
-  margin: 0; padding: 0;
-  display: grid; gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
 }
 
 .row {
@@ -19,40 +21,69 @@
   outline: none;
   transition: transform 160ms var(--ease), box-shadow 200ms var(--ease), border-color 200ms var(--ease);
 }
-.row:hover { box-shadow: var(--shadow-2); border-color: rgba(74, 140, 90, 0.25); transform: translateY(-1px); }
-.row:focus-visible { box-shadow: 0 0 0 3px rgba(74, 140, 90, 0.3); }
 
-.row-art { display: grid; place-items: center; }
+.row:hover {
+  box-shadow: var(--shadow-2);
+  border-color: rgba(74, 140, 90, 0.25);
+  transform: translateY(-1px);
+}
 
-.row-body { min-width: 0; }
+.row:focus-visible {
+  box-shadow: 0 0 0 3px rgba(74, 140, 90, 0.3);
+}
+
+.row-art {
+  display: grid;
+  place-items: center;
+}
+
+.row-body {
+  min-width: 0;
+}
+
 .row-head {
-  display: flex; align-items: center; gap: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   flex-wrap: wrap;
 }
+
 .row-title {
   font-weight: 600;
   font-size: 1rem;
   color: var(--ink);
   margin-right: auto;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
+
 .row-stage {
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--ink-soft);
 }
+
 .row-note {
   margin: 4px 0 8px;
   color: var(--ink-soft);
   font-size: 0.92rem;
 }
+
 .row-foot {
-  display: flex; justify-content: space-between; gap: var(--space-3);
-  font-size: 0.82rem; color: var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: 0.82rem;
+  color: var(--ink-faint);
 }
-.row-actions { display: flex; gap: 4px; }
+
+.row-actions {
+  display: flex;
+  gap: 4px;
+}
 
 .kind-pill {
   font-size: 0.72rem;
@@ -63,11 +94,28 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
-.kind-habit     { background: rgba(126, 176, 133, 0.18); color: var(--leaf-1); }
-.kind-task      { background: rgba(168, 200, 240, 0.25); color: #2d5b8c; }
-.kind-milestone { background: rgba(240, 168, 104, 0.22); color: #8c5018; }
 
-.category-dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
+.kind-habit {
+  background: rgba(126, 176, 133, 0.18);
+  color: var(--leaf-1);
+}
+
+.kind-task {
+  background: rgba(168, 200, 240, 0.25);
+  color: #2d5b8c;
+}
+
+.kind-milestone {
+  background: rgba(240, 168, 104, 0.22);
+  color: #8c5018;
+}
+
+.category-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
 
 .progress {
   height: 6px;
@@ -76,27 +124,55 @@
   overflow: hidden;
   margin: 4px 0;
 }
+
 .progress-bar {
   height: 100%;
   border-radius: var(--r-pill);
   transition: width 600ms var(--ease-bloom), background 400ms var(--ease);
 }
-.stage-seed    { background: var(--stage-seed); }
-.stage-sprout  { background: var(--stage-sprout); }
-.stage-bud     { background: var(--stage-bud); }
-.stage-bloom   { background: linear-gradient(90deg, var(--stage-bud), var(--stage-bloom)); }
-.stage-harvest { background: linear-gradient(90deg, var(--stage-bloom), var(--stage-harvest)); }
 
-.muted { color: var(--ink-faint); }
-.small { font-size: 0.85rem; }
+.stage-seed {
+  background: var(--stage-seed);
+}
+
+.stage-sprout {
+  background: var(--stage-sprout);
+}
+
+.stage-bud {
+  background: var(--stage-bud);
+}
+
+.stage-bloom {
+  background: linear-gradient(90deg, var(--stage-bud), var(--stage-bloom));
+}
+
+.stage-harvest {
+  background: linear-gradient(90deg, var(--stage-bloom), var(--stage-harvest));
+}
+
+.muted {
+  color: var(--ink-faint);
+}
+
+.small {
+  font-size: 0.85rem;
+}
 
 @keyframes bloom-pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(74, 140, 90, 0.45); }
-  100% { box-shadow: 0 0 0 16px rgba(74, 140, 90, 0); }
-}
-.row.flash { animation: bloom-pulse 700ms var(--ease) 1; }
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 140, 90, 0.45);
+  }
 
-/* ---------- Dialog ---------- */
+  100% {
+    box-shadow: 0 0 0 16px rgba(74, 140, 90, 0);
+  }
+}
+
+.row.flash {
+  animation: bloom-pulse 700ms var(--ease) 1;
+}
+
 .goal-dialog {
   border: 0;
   border-radius: var(--r-lg);
@@ -106,11 +182,13 @@
   max-width: 520px;
   width: calc(100% - 2rem);
 }
+
 .goal-dialog::backdrop {
   background: rgba(42, 32, 24, 0.45);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
 }
+
 .goal-form {
   background: var(--surface);
   border: 1px solid var(--surface-edge);
@@ -120,12 +198,23 @@
   display: grid;
   gap: var(--space-3);
 }
-.goal-form h3 { margin-bottom: var(--space-2); }
-.goal-form label { display: grid; gap: 4px; font-size: 0.9rem; color: var(--ink-soft); }
+
+.goal-form h3 {
+  margin-bottom: var(--space-2);
+}
+
+.goal-form label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
 .goal-form input,
 .goal-form select,
 .goal-form textarea {
-  font: inherit; color: inherit;
+  font: inherit;
+  color: inherit;
   width: 100%;
   padding: 8px 10px;
   background: var(--surface-2);
@@ -134,20 +223,43 @@
   outline: none;
   transition: border-color 160ms var(--ease), box-shadow 160ms var(--ease);
 }
+
 .goal-form input:focus,
 .goal-form select:focus,
 .goal-form textarea:focus {
   border-color: var(--leaf-2);
   box-shadow: 0 0 0 3px rgba(74, 140, 90, 0.2);
 }
-.goal-form textarea { resize: vertical; min-height: 60px; }
+
+.goal-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
 .row-2 {
-  display: grid; gap: var(--space-3);
+  display: grid;
+  gap: var(--space-3);
   grid-template-columns: 1fr 1fr;
 }
-.dialog-actions { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); }
+
+.dialog-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
 @media (max-width: 480px) {
-  .row-2 { grid-template-columns: 1fr; }
-  .row { grid-template-columns: 56px 1fr; }
-  .row-actions { grid-column: 1 / -1; justify-content: flex-end; }
+  .row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .row {
+    grid-template-columns: 56px 1fr;
+  }
+
+  .row-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
 }

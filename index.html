@@ -4,47 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="description" content="Focus Bloom — a local-first goal garden where habits and milestones grow into living plants." />
-    <title>Focus Bloom — your goal garden</title>
+    <meta
+      name="description"
+      content="Focus Bloom, a local-first goal garden where habits, tasks, and milestones grow into plants."
+    />
+    <title>Focus Bloom</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='52' font-size='52'%3E%F0%9F%8C%B1%3C/text%3E%3C/svg%3E" />
     <link rel="stylesheet" href="styles/tokens.css" />
     <link rel="stylesheet" href="styles/app.css" />
-    <link rel="stylesheet" href="styles/garden.css" />
     <link rel="stylesheet" href="styles/list.css" />
   </head>
   <body>
-    <main id="app" aria-label="Focus Bloom">
-      <header class="topbar">
-        <div class="brand">
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 28 28" width="28" height="28">
-              <path d="M14 24c0-6 4-10 10-10-1 6-5 10-10 10z" fill="var(--leaf-2)"/>
-              <path d="M14 24c0-6-4-10-10-10 1 6 5 10 10 10z" fill="var(--leaf-1)"/>
-              <path d="M13 24h2v-8h-2z" fill="var(--soil-2)"/>
-            </svg>
-          </span>
-          <span>Focus Bloom</span>
-        </div>
-        <span class="spacer"></span>
-      </header>
-      <section class="content">
-        <div class="empty">
-          <div class="leaf" aria-hidden="true">🌱</div>
-          <h1>Your garden is being planted…</h1>
-          <p>The interactive shell will arrive in the next few commits.</p>
-          <p id="boot-status" style="margin-top:1rem;font-size:0.9rem;color:var(--ink-faint)"></p>
-        </div>
-      </section>
-      <script type="module" src="js/main.js"></script>
-      <footer class="footer">
-        Local-first. Your garden lives only in this browser.
-      </footer>
-    </main>
+    <main id="app" aria-label="Focus Bloom"></main>
     <noscript>
       <p style="padding:2rem;font-family:system-ui">
-        Focus Bloom needs JavaScript to render your garden. Everything still
-        runs locally in your browser — there's no server involved.
+        Focus Bloom needs JavaScript to grow your garden, but everything still stays local to this browser.
       </p>
     </noscript>
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
