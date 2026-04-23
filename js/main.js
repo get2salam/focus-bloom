@@ -1,24 +1,29 @@
 // Focus Bloom — bootstrap. Wires the store to the DOM.
-//
-// For now this just initializes the store and confirms persistence works.
-// Subsequent commits add the UI, garden, shortcuts, and import/export.
 
 import { init, getState, subscribe } from "./store.js";
+import { renderTopbar, renderListView } from "./ui.js";
+import { renderGardenView } from "./garden.js";
 
 function bootstrap() {
   init();
   const app = document.getElementById("app");
   if (!app) return;
 
+  // Build static skeleton: <header> + <section.content> + <footer>
+  app.replaceChildren();
+  const header = document.createElement("div");
+  const content = document.createElement("section");
+  content.className = "content";
+  const footer = document.createElement("footer");
+  footer.className = "footer";
+  footer.append(document.createTextNode("Local-first. Your garden lives only in this browser."));
+  app.append(header, content, footer);
+
   const render = () => {
     const s = getState();
-    const status = document.getElementById("boot-status");
-    if (status) {
-      const n = s.goals.length;
-      status.textContent = n
-        ? `Loaded ${n} goal${n === 1 ? "" : "s"} from local storage.`
-        : "Storage ready. Plant your first seed in the next commit.";
-    }
+    renderTopbar(header);
+    if (s.ui.view === "garden") renderGardenView(content);
+    else renderListView(content);
   };
 
   subscribe(render);
