@@ -10,6 +10,7 @@ import {
   percent,
 } from "./model.js";
 import { renderPlantSVG, brandMarkSVG } from "./garden.js";
+import { exportGarden, importGardenFile } from "./io.js";
 
 const SVG_NS = "http://www.w3.org/2000/svg";
 const SVG_TAGS = new Set([
@@ -122,6 +123,26 @@ export function renderTopbar(container) {
       el(
         "button",
         {
+          class: "btn",
+          type: "button",
+          id: "import-btn",
+          onClick: () => document.getElementById("import-file")?.click(),
+        },
+        [el("span", { "aria-hidden": "true" }, "⤓"), el("span", {}, "Import")]
+      ),
+      el(
+        "button",
+        {
+          class: "btn",
+          type: "button",
+          id: "export-btn",
+          onClick: () => exportGarden(),
+        },
+        [el("span", { "aria-hidden": "true" }, "⤒"), el("span", {}, "Export")]
+      ),
+      el(
+        "button",
+        {
           class: "btn btn-primary",
           type: "button",
           id: "new-goal-btn",
@@ -129,6 +150,23 @@ export function renderTopbar(container) {
         },
         [el("span", { "aria-hidden": "true" }, "✚"), el("span", {}, "New goal")]
       ),
+      el("input", {
+        id: "import-file",
+        type: "file",
+        accept: ".json,application/json",
+        class: "sr-only",
+        onChange: async (event) => {
+          const file = event.target.files?.[0];
+          if (!file) return;
+          try {
+            await importGardenFile(file);
+          } catch (error) {
+            window.alert(error instanceof Error ? error.message : "Could not import that file.");
+          } finally {
+            event.target.value = "";
+          }
+        },
+      }),
     ])
   );
 }

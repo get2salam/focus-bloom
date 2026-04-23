@@ -3,9 +3,10 @@
 import { init, getState, subscribe } from "./store.js";
 import { renderTopbar, renderListView } from "./ui.js";
 import { renderGardenView } from "./garden.js";
+import { seedGarden } from "./seeds.js";
 
 function bootstrap() {
-  init();
+  init({ seed: seedGarden });
   const app = document.getElementById("app");
   if (!app) return;
 

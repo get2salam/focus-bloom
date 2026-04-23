@@ -100,6 +100,7 @@ export function init({ seed } = {}) {
   } else if (typeof seed === "function") {
     state = {
       ...DEFAULT_STATE,
+      ui: { ...DEFAULT_STATE.ui, view: "garden" },
       goals: seed().map((g) => reconcile(makeGoal(g))),
       meta: { createdAt: new Date().toISOString(), seedShown: true },
     };
