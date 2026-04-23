@@ -1,0 +1,143 @@
+/* Focus Bloom — garden tableau */
+
+.garden-shell {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.garden-hero {
+  display: grid;
+  gap: var(--space-4);
+  background:
+    radial-gradient(circle at top right, rgba(255, 228, 189, 0.6), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0)),
+    var(--surface);
+}
+
+.garden-stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.garden-stat {
+  display: grid;
+  gap: 2px;
+}
+
+.garden-stat-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-faint);
+}
+
+.garden-stat-value {
+  font-size: 1.5rem;
+}
+
+.garden-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+}
+
+.garden-card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(circle at top center, rgba(255,255,255,0.55), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,0), rgba(194, 222, 198, 0.12)),
+    var(--surface);
+  border: 1px solid var(--surface-edge);
+  box-shadow: var(--shadow-1);
+  transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), border-color 180ms var(--ease);
+}
+
+.garden-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+  border-color: rgba(74, 140, 90, 0.24);
+}
+
+.garden-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -10% 0;
+  height: 36%;
+  background: linear-gradient(180deg, transparent, rgba(74, 140, 90, 0.08));
+  pointer-events: none;
+}
+
+.garden-art {
+  display: grid;
+  place-items: center;
+  min-height: 172px;
+}
+
+.garden-body {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.garden-body h3 {
+  font-size: 1.08rem;
+}
+
+.garden-meta,
+.garden-foot,
+.garden-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.garden-foot {
+  justify-content: space-between;
+}
+
+.garden-stage {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.garden-progress {
+  height: 8px;
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.plant {
+  overflow: visible;
+}
+
+.plant.stage-bloom,
+.plant.stage-harvest {
+  filter: drop-shadow(0 0 12px rgba(240, 168, 104, 0.18));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .plant.stage-bloom,
+  .plant.stage-harvest {
+    animation: bloom-breathe 4.6s ease-in-out infinite;
+  }
+}
+
+@keyframes bloom-breathe {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-2px) scale(1.02); }
+}
+
+@media (max-width: 720px) {
+  .garden-stat-row {
+    grid-template-columns: 1fr;
+  }
+}

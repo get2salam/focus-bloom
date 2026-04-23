@@ -13,7 +13,7 @@ const DEFAULT_STATE = {
   version: SCHEMA_VERSION,
   goals: [],
   ui: {
-    view: "list",         // "garden" | "list"
+    view: "garden",       // "garden" | "list"
     search: "",
     categoryFilter: "all", // "all" | <category>
     kindFilter: "all",     // "all" | "habit" | "task" | "milestone"
