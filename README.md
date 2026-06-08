@@ -27,6 +27,7 @@ Because everything lives in your browser's localStorage, your garden is private,
 - **Import / export / backup** — your data is JSON, and you own it
 - **Keyboard shortcuts** — designed to feel fast under your fingers, with a built-in help overlay
 - **Quick actions** — replant the sample garden, clear the current browser garden, or plant a new goal instantly
+- **Garden Coach** — a deterministic recommender (`js/coach.js`) that scores every plant for "tend me next" urgency and explains *why*, so the suggestion is auditable instead of mysterious
 - **Local-first** — no accounts, no servers, no tracking, no network calls
 
 ## Quick start
@@ -40,6 +41,12 @@ python -m http.server 8000
 ```
 
 Or simply open `index.html` directly in a modern browser. There is **no build step**.
+
+The pure logic modules ship with a small Node-native test suite:
+
+```bash
+npm test  # runs node --test against tests/
+```
 
 ## Keyboard shortcuts
 
@@ -104,7 +111,10 @@ focus-bloom/
     seeds.js        # sample garden data
     io.js           # import/export helpers
     shortcuts.js    # keyboard handling
+    coach.js        # deterministic "tend me next" recommender
     main.js         # bootstrap
+  tests/
+    coach.test.js   # node:test suite for coach.js
   docs/
     preview.svg     # hero image used in this README
 ```
