@@ -5,7 +5,9 @@
   "description": "Local-first goal garden — habits, tasks, and milestones as growing plants.",
   "type": "module",
   "scripts": {
-    "test": "node --test tests/**/*.test.js"
+    "check:static": "node tools/check-static-assets.mjs",
+    "test": "node --test tests/**/*.test.js",
+    "verify": "npm run check:static && npm test"
   },
   "license": "MIT"
 }

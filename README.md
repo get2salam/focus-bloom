@@ -48,6 +48,16 @@ The pure logic modules ship with a small Node-native test suite:
 npm test  # runs node --test against tests/
 ```
 
+For the same local checks that run in CI, verify both the static app shell and tests:
+
+```bash
+npm run verify
+```
+
+`npm run check:static` confirms that every local stylesheet/script referenced by `index.html`
+exists and that app module imports still resolve, which is useful before publishing the
+static site or renaming files.
+
 ## Keyboard shortcuts
 
 | Key | Action |
@@ -115,6 +125,8 @@ focus-bloom/
     main.js         # bootstrap
   tests/
     coach.test.js   # node:test suite for coach.js
+  tools/
+    check-static-assets.mjs # verifies static shell asset/module references
   docs/
     preview.svg     # hero image used in this README
 ```
