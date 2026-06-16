@@ -48,6 +48,14 @@ export function percent(goal) {
   return Math.max(0, Math.min(100, Math.round((goal.progress / goal.target) * 100)));
 }
 
+export function progressLabel(goal) {
+  const pct = percent(goal);
+  if (!goal.target || goal.target <= 0) {
+    return `Vitality ${Math.round(goal.vitality ?? 0)} out of 100 (${pct}%)`;
+  }
+  return `${goal.progress} of ${goal.target} complete (${pct}%)`;
+}
+
 export function newId(prefix = "g") {
   // Short, URL-safe-ish id; collisions are negligible at this scale.
   const r = Math.random().toString(36).slice(2, 8);

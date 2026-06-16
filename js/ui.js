@@ -8,6 +8,7 @@ import {
   KIND_META,
   STAGE_META,
   percent,
+  progressLabel,
 } from "./model.js";
 import { renderPlantSVG, brandMarkSVG } from "./garden.js";
 import { exportGarden, importGardenFile } from "./io.js";
@@ -291,8 +292,14 @@ export function renderToolbar(state) {
 function renderListRow(goal) {
   const pct = percent(goal);
   const meta = STAGE_META[goal.stage];
+  const progressText = progressLabel(goal);
 
-  return el("li", { class: "row", dataset: { goalId: goal.id }, tabindex: "0" }, [
+  return el("li", {
+    class: "row",
+    dataset: { goalId: goal.id },
+    tabindex: "0",
+    "aria-label": `${goal.title}, ${KIND_META[goal.kind].label}, ${meta.label}, ${progressText}`,
+  }, [
     el("div", { class: "row-art", "aria-hidden": "true" }, [
       renderPlantSVG(goal, { compact: true }),
     ]),
@@ -307,7 +314,15 @@ function renderListRow(goal) {
         el("span", { class: "row-stage", title: meta.blurb }, meta.label),
       ]),
       goal.note ? el("p", { class: "row-note" }, goal.note) : null,
-      el("div", { class: "progress" }, [
+      el("div", {
+        class: "progress",
+        role: "progressbar",
+        "aria-label": `${goal.title} progress`,
+        "aria-valuemin": "0",
+        "aria-valuemax": "100",
+        "aria-valuenow": String(pct),
+        "aria-valuetext": progressText,
+      }, [
         el("div", { class: `progress-bar stage-${goal.stage}`, style: `width:${pct}%` }),
       ]),
       el("div", { class: "row-foot" }, [
@@ -327,7 +342,7 @@ function renderListRow(goal) {
         {
           class: "btn btn-ghost",
           type: "button",
-          "aria-label": "Log progress",
+          "aria-label": `Log progress for ${goal.title}`,
           title: "Log progress (+1)",
           onClick: () => {
             actions.logProgress(goal.id, 1);
@@ -341,7 +356,7 @@ function renderListRow(goal) {
         {
           class: "btn btn-ghost",
           type: "button",
-          "aria-label": "Edit goal",
+          "aria-label": `Edit ${goal.title}`,
           onClick: () => openGoalDialog(goal),
         },
         "✎"
@@ -351,7 +366,7 @@ function renderListRow(goal) {
         {
           class: "btn btn-ghost btn-danger",
           type: "button",
-          "aria-label": "Delete goal",
+          "aria-label": `Delete ${goal.title}`,
           onClick: () => confirmRemove(goal),
         },
         "🗑"

@@ -1,7 +1,7 @@
 // Focus Bloom — garden rendering and plant illustrations.
 
 import { actions, getState, selectStats, selectVisibleGoals } from "./store.js";
-import { KIND_META, STAGE_META, percent } from "./model.js";
+import { KIND_META, STAGE_META, percent, progressLabel } from "./model.js";
 import { el, openGoalDialog } from "./ui.js";
 
 const CATEGORY_PETAL = {
@@ -109,7 +109,11 @@ export function renderPlantSVG(goal, opts = {}) {
 
 function renderGardenCard(goal) {
   const pct = percent(goal);
-  return el("article", { class: `garden-card stage-${goal.stage}` }, [
+  const progressText = progressLabel(goal);
+  return el("article", {
+    class: `garden-card stage-${goal.stage}`,
+    "aria-label": `${goal.title}, ${KIND_META[goal.kind].label}, ${STAGE_META[goal.stage].label}, ${progressText}`,
+  }, [
     el("div", { class: "garden-art" }, [renderPlantSVG(goal)]),
     el("div", { class: "garden-body" }, [
       el("div", { class: "garden-meta" }, [
@@ -118,14 +122,22 @@ function renderGardenCard(goal) {
       ]),
       el("h3", {}, goal.title),
       goal.note ? el("p", { class: "muted" }, goal.note) : el("p", { class: "muted" }, STAGE_META[goal.stage].blurb),
-      el("div", { class: "garden-progress" }, [
+      el("div", {
+        class: "garden-progress",
+        role: "progressbar",
+        "aria-label": `${goal.title} progress`,
+        "aria-valuemin": "0",
+        "aria-valuemax": "100",
+        "aria-valuenow": String(pct),
+        "aria-valuetext": progressText,
+      }, [
         el("div", { class: `progress-bar stage-${goal.stage}`, style: `width:${pct}%` }),
       ]),
       el("div", { class: "garden-foot" }, [
         el("span", {}, goal.target > 0 ? `${goal.progress} / ${goal.target}` : `Vitality ${Math.round(goal.vitality ?? 0)}`),
         el("div", { class: "garden-actions" }, [
-          el("button", { class: "btn btn-ghost", type: "button", onClick: () => actions.logProgress(goal.id, 1) }, "Water"),
-          el("button", { class: "btn btn-ghost", type: "button", onClick: () => openGoalDialog(goal) }, "Edit"),
+          el("button", { class: "btn btn-ghost", type: "button", "aria-label": `Water ${goal.title}`, onClick: () => actions.logProgress(goal.id, 1) }, "Water"),
+          el("button", { class: "btn btn-ghost", type: "button", "aria-label": `Edit ${goal.title}`, onClick: () => openGoalDialog(goal) }, "Edit"),
         ]),
       ]),
     ]),
