@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "check:static": "node tools/check-static-assets.mjs",
+    "example:coach": "node tools/coach-example.mjs",
     "test": "node --test tests/**/*.test.js",
     "verify": "npm run check:static && npm test"
   },

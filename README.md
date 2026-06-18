@@ -58,6 +58,29 @@ npm run verify
 exists and that app module imports still resolve, which is useful before publishing the
 static site or renaming files.
 
+## Runnable Garden Coach example
+
+The recommendation engine is browser-free, so you can inspect the exact scoring
+logic from the terminal before wiring it into a UI change:
+
+```bash
+npm run example:coach
+```
+
+Expected output is deterministic because the example pins the garden data and
+clock:
+
+```text
+Garden: 3 goals, 1 thirsty, 1 almost ready to harvest.
+Tend next:
+1. Morning stretch — score 90. Vitality is low (22/100). No log for 6 days.
+2. Polish portfolio case study — score 70. Already in bloom (90%) — one more push finishes it.
+```
+
+Use `tools/coach-example.mjs` as a small template when experimenting with new
+coach rules: add realistic goals, pass a fixed `today`, and compare the printed
+reasons before changing production UI copy.
+
 ## Keyboard shortcuts
 
 | Key | Action |
@@ -126,6 +149,7 @@ focus-bloom/
   tests/
     coach.test.js   # node:test suite for coach.js
   tools/
+    coach-example.mjs      # runnable deterministic Garden Coach demo
     check-static-assets.mjs # verifies static shell asset/module references
   docs/
     preview.svg     # hero image used in this README
